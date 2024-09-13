@@ -10,6 +10,9 @@ public class ManagerScenes : MonoBehaviour
     public TextMeshProUGUI Username_Field;
     public static ManagerScenes instance;
     public SaveDataClass dataClass;
+    private GameObject highScoreText;
+    private GameObject userText;
+
     private void Awake()
     {
         if (instance)
@@ -18,6 +21,7 @@ public class ManagerScenes : MonoBehaviour
         instance = this;
 
         DontDestroyOnLoad(gameObject);
+
     }
     public void OnPlay()
     {
@@ -28,10 +32,6 @@ public class ManagerScenes : MonoBehaviour
         dataClass.userName = Username_Field.text;
         dataClass.SaveData();
     }
-    public void SetHighScore()
-    {
-        dataClass.highScore = FindObjectOfType<MainManager>().GetHighScore();
-    }
     private void OnApplicationQuit()
     {
         if (Username_Field)
@@ -41,13 +41,11 @@ public class ManagerScenes : MonoBehaviour
     private void OnLevelWasLoaded(int level)
     {
         dataClass.LoadData();
-        GameObject userText = GameObject.Find("Username");
-        GameObject highScoreText = GameObject.Find("HighScore");
+        userText = GameObject.Find("Username");
 
         if (dataClass.HasUserName())
         {
             userText.GetComponent<Text>().text = dataClass.userName;
-            highScoreText.GetComponent<Text>().text += dataClass.highScore;
         }
     }
 }
@@ -61,7 +59,6 @@ public class SaveDataClass
     {
         SaveDataClass data = new SaveDataClass();
         data.userName = userName;
-        data.highScore = highScore;
 
         string JSON = JsonUtility.ToJson(data);
 
@@ -79,7 +76,6 @@ public class SaveDataClass
             SaveDataClass data = JsonUtility.FromJson<SaveDataClass>(JSON);
 
             userName = data.userName;
-            highScore = data.highScore;
         }
     }
     public bool HasUserName()

@@ -256,7 +256,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 3
+  m_CollisionDetection: 1
 --- !u!114 &97436047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,7 +402,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 8
   m_CollisionDetection: 1
 --- !u!114 &177912863
@@ -544,6 +544,7 @@ MonoBehaviour:
   LineCount: 6
   Ball: {fileID: 177912862}
   ScoreText: {fileID: 188020406}
+  HighScoreText: {fileID: 1701783038}
   GameOverText: {fileID: 474497238}
 --- !u!1 &455529321
 GameObject:
